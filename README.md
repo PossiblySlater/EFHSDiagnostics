@@ -1,2 +1,2 @@
 # EFHSDiagnostics
-A diagnostic tool for the EFHS Computer Service Technician Class
+A diagnostic tool for the EFHS Computer Service Technician Class.
