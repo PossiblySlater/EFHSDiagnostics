@@ -4,7 +4,7 @@ EFHSDiagnostics is a diagnostic tool designed for the EFHS Computer Service Tech
 
 ## Features
 
-- **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and load status.
+- **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and status.
 - **Operating System Information**: Shows the OS name and version.
 - **RAM Details**: Lists installed RAM capacity, speed, type, and manufacturer for each module.
 - **Storage Information**: Provides details about internal drives, including size, type, and health status.
