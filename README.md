@@ -4,7 +4,7 @@ EFHSDiagnostics is a diagnostic tool designed for the EFHS Computer Service Tech
 
 ## Features
 
-- **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and load status.
+- **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and status.
 - **Operating System Information**: Shows the OS name and version.
 - **RAM Details**: Lists installed RAM capacity, speed, type, and manufacturer for each module.
 - **Storage Information**: Provides details about internal drives, including size, type, and health status.
@@ -22,14 +22,14 @@ Before running the script, ensure the following:
 
 ## How to Use
 To use the EFHS Diagnostics tool, either:
-1. Right click `EFHSDiagnostic.ps1` and click *Run in PowerShell.*
+1. Right click `EFHSDiagnostic.ps1` and click **Run in PowerShell.**
 
 2. Open a new PowerShell window, navigate to the EFHSDiagnostics directory, and run `./EFHSDiagnostic.ps1`.
 
 ## Troubleshooting
-+*Script Fails to Run* Ensure the execution policy is set to unrestricted as described in the prerequisites.
+- **Script Fails to Run**: Ensure the execution policy is set to unrestricted as described in the prerequisites.
 
 ## License
-This project is licensed under the GNU General Public License 3.0. See the (LICENSE) file for details.
+This project is licensed under the GNU General Public License 3.0. See the ([LICENSE](https://github.com/PossiblySlater/EFHSDiagnostics/blob/main/LICENSE)) file for details.
 
 Created by Slater Feistner
