@@ -30,6 +30,6 @@ To use the EFHS Diagnostics tool, either:
 - **Script Fails to Run**: Ensure the execution policy is set to unrestricted as described in the prerequisites.
 
 ## License
-This project is licensed under the GNU General Public License 3.0. See the (LICENSE) file for details.
+This project is licensed under the GNU General Public License 3.0. See the ([LICENSE](https://github.com/PossiblySlater/EFHSDiagnostics/blob/main/LICENSE)) file for details.
 
 Created by Slater Feistner
