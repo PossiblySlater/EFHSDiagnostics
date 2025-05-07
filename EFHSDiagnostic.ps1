@@ -1,7 +1,7 @@
 Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
-Write-Host "   EFHS  DIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "      Version 2.1" -ForegroundColor Yellow
+Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
+Write-Host "      Version 2.2" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 
@@ -62,20 +62,6 @@ Write-Host ""
 $drives = Get-CimInstance Win32_DiskDrive | Where-Object { $_.MediaType -notlike "*Removable*" }
 $totalStorage = 0
 Write-Host "=== Storage ===" -ForegroundColor Yellow
-$allDrivesGood = $true
-foreach ($drive in $drives) {
-    if ($drive.Status -ne "OK") {
-        $allDrivesGood = $false
-        break
-    }
-}
-if ($allDrivesGood) {
-    Write-Host "Status: " -ForegroundColor Yellow -NoNewline
-    Write-Host  "OK" -ForegroundColor Green 
-} else {
-    Write-Host "Status: " -ForegroundColor Yellow -NoNewline
-    Write-Host  "Bad" -ForegroundColor Red 
-}
 Write-Host "----------------------------------------" -ForegroundColor Yellow
 foreach ($drive in $drives) {
     $sizeGB = $drive.Size / 1GB
@@ -84,6 +70,12 @@ foreach ($drive in $drives) {
     Write-Host ("Size         : {0:N2} GB" -f $sizeGB) -ForegroundColor Yellow
     Write-Host ("Drive Letter : {0}" -f $drive.DeviceID) -ForegroundColor Yellow
     Write-Host ("Drive Type   : {0}" -f $drive.MediaType) -ForegroundColor Yellow
+    Write-Host "Status       : " -ForegroundColor Yellow -NoNewline
+    if ($drive.Status -eq "OK") {
+        Write-Host "OK" -ForegroundColor Green
+    } else {
+        Write-Host "Bad" -ForegroundColor Red
+    }
     Write-Host "----------------------------------------" -ForegroundColor Yellow
 }
 Write-Host ("Total Storage : {0:N2} GB" -f $totalStorage) -ForegroundColor Yellow
@@ -97,32 +89,24 @@ if ($gpus.Count -eq 0) {
     Write-Host  "Bad" -ForegroundColor Red 
     Write-Host "No graphics card found." -ForegroundColor Yellow
 } else {
-    $allGPUsGood = $true
-    foreach ($gpu in $gpus) {
-        if ($gpu.Status -ne "OK") {
-            $allGPUsGood = $false
-            break
-        }
-    }
-    if ($allGPUsGood) {
-        Write-Host "Status: " -ForegroundColor Magenta -NoNewline
-        Write-Host  "OK" -ForegroundColor Green 
-    } else {
-        Write-Host "Status: " -ForegroundColor Magenta -NoNewline
-        Write-Host  "Bad" -ForegroundColor Red 
-    }
     Write-Host "Number of GPUs: $($gpus.Count)" -ForegroundColor Magenta
-}
-Write-Host "----------------------------------------" -ForegroundColor Magenta
-foreach ($gpu in $gpus) {
-    Write-Host "GPU         : $($gpu.Name)" -ForegroundColor Magenta
-    if ($null -ne $gpu.AdapterRAM) {
-        $vramMB = [math]::Round($gpu.AdapterRAM / 1MB, 2)
-        Write-Host "VRAM        : $vramMB MB" -ForegroundColor Magenta
-    } else {
-        Write-Host "VRAM        : Unknown" -ForegroundColor Magenta
-    }
     Write-Host "----------------------------------------" -ForegroundColor Magenta
+    foreach ($gpu in $gpus) {
+        Write-Host "GPU         : $($gpu.Name)" -ForegroundColor Magenta
+        Write-Host "Status      : " -ForegroundColor Magenta -NoNewline
+        if ($gpu.Status -eq "OK") {
+            Write-Host "OK" -ForegroundColor Green
+        } else {
+            Write-Host "Bad" -ForegroundColor Red
+        }
+        if ($null -ne $gpu.AdapterRAM) {
+            $vramMB = [math]::Round($gpu.AdapterRAM / 1MB, 2)
+            Write-Host "VRAM        : $vramMB MB" -ForegroundColor Magenta
+        } else {
+            Write-Host "VRAM        : Unknown" -ForegroundColor Magenta
+        }
+        Write-Host "----------------------------------------" -ForegroundColor Magenta
+    }
 }
 Write-Host ""
 Pause
