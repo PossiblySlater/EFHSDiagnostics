@@ -22,12 +22,12 @@ Before running the script, ensure the following:
 
 ## How to Use
 To use the EFHS Diagnostics tool, either:
-1. Right click `EFHSDiagnostic.ps1` and click *Run in PowerShell.*
+1. Right click `EFHSDiagnostic.ps1` and click **Run in PowerShell.**
 
 2. Open a new PowerShell window, navigate to the EFHSDiagnostics directory, and run `./EFHSDiagnostic.ps1`.
 
 ## Troubleshooting
-- *Script Fails to Run* Ensure the execution policy is set to unrestricted as described in the prerequisites.
+- **Script Fails to Run**: Ensure the execution policy is set to unrestricted as described in the prerequisites.
 
 ## License
 This project is licensed under the GNU General Public License 3.0. See the (LICENSE) file for details.
