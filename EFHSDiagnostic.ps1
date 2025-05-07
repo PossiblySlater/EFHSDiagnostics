@@ -5,6 +5,13 @@ Write-Host "      Version 2.2" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 
+# --- Operating System ---
+$os = Get-CimInstance Win32_OperatingSystem
+Write-Host "=== Operating System ===" -ForegroundColor Green
+Write-Host "OS         : $($os.Caption)" -ForegroundColor Green
+Write-Host "Version    : $($os.Version)" -ForegroundColor Green
+Write-Host ""
+
 # --- CPU Info ---
 $cpu = Get-CimInstance Win32_Processor
 Write-Host "=== CPU ===" -ForegroundColor Blue
@@ -19,13 +26,6 @@ Write-Host "Name       : $($cpu.Name)" -ForegroundColor Blue
 Write-Host "Cores      : $($cpu.NumberOfCores)" -ForegroundColor Blue
 Write-Host ("Frequency  : {0:N2} GHz" -f ($cpu.MaxClockSpeed / 1000)) -ForegroundColor Blue
 Write-Host "Logical Cores: $($cpu.NumberOfLogicalProcessors)" -ForegroundColor Blue
-Write-Host ""
-
-# --- Operating System ---
-$os = Get-CimInstance Win32_OperatingSystem
-Write-Host "=== Operating System ===" -ForegroundColor Green
-Write-Host "OS         : $($os.Caption)" -ForegroundColor Green
-Write-Host "Version    : $($os.Version)" -ForegroundColor Green
 Write-Host ""
 
 # --- RAM Info ---
