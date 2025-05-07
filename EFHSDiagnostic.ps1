@@ -1,11 +1,4 @@
 Clear-Host
-Write-Host "
- _____ _____ _   _ ____    ____  _                             _   _          
-| ____|  ___| | | / ___|  |  _ \(_) __ _  __ _ _ __   ___  ___| |_(_) ___ ___ 
-|  _| | |_  | |_| \___ \  | | | | |/ _` |/ _` | '_ \ / _ \/ __| __| |/ __/ __|
-| |___|  _| |  _  |___) | | |_| | | (_| | (_| | | | | (_) \__ \ |_| | (__\__ \
-|_____|_|   |_| |_|____/  |____/|_|\__,_|\__, |_| |_|\___/|___/\__|_|\___|___/
-                                         |___/                                " -ForegroundColor Cyan
 Write-Host "=======================" -ForegroundColor White
 Write-Host "   EFHS  DIAGNOSTICS" -ForegroundColor Cyan
 Write-Host "      Version 1.7" -ForegroundColor Yellow
@@ -15,6 +8,11 @@ Write-Host "=======================`n" -ForegroundColor White
 # --- CPU Info ---
 $cpu = Get-CimInstance Win32_Processor
 Write-Host "--- CPU ---" -ForegroundColor Blue
+if ($cpu.LoadPercentage -lt 80) {
+    Write-Host "Status: OK" -ForegroundColor Green
+} else {
+    Write-Host "Status: Bad" -ForegroundColor Red
+}
 Write-Host "Name       : $($cpu.Name)" -ForegroundColor DarkBlue
 Write-Host "Cores      : $($cpu.NumberOfCores)" -ForegroundColor DarkBlue
 Write-Host ("Frequency  : {0:N2} GHz" -f ($cpu.MaxClockSpeed / 1000)) -ForegroundColor DarkBlue
@@ -30,6 +28,22 @@ Write-Host ""
 
 # --- RAM Info ---
 $ramModules = Get-CimInstance Win32_PhysicalMemory
+if ($ramModules -and $ramModules.Count -gt 0) {
+    $allGood = $true
+    foreach ($module in $ramModules) {
+        if ($module.Status -ne "OK") {
+            $allGood = $false
+            break
+        }
+    }
+    if ($allGood) {
+        Write-Host "Status: OK" -ForegroundColor Green
+    } else {
+        Write-Host "Status: Bad" -ForegroundColor Red
+    }
+} else {
+    Write-Host "Status: No RAM modules detected" -ForegroundColor Yellow
+}
 $ramBytes = ($ramModules | Measure-Object -Property Capacity -Sum).Sum
 $ramGB = [math]::Round($ramBytes / 1GB, 2)
 Write-Host "--- RAM ---" -ForegroundColor Red
@@ -57,6 +71,18 @@ Write-Host ""
 $drives = Get-CimInstance Win32_DiskDrive | Where-Object { $_.MediaType -notlike "*Removable*" }
 $totalStorage = 0
 Write-Host "--- Storage ---" -ForegroundColor Yellow
+$allDrivesGood = $true
+foreach ($drive in $drives) {
+    if ($drive.Status -ne "OK") {
+        $allDrivesGood = $false
+        break
+    }
+}
+if ($allDrivesGood) {
+    Write-Host "Status: OK" -ForegroundColor Green
+} else {
+    Write-Host "Status: Bad" -ForegroundColor Red
+}
 foreach ($drive in $drives) {
     $sizeGB = $drive.Size / 1GB
     $totalStorage += $sizeGB
@@ -70,8 +96,21 @@ Write-Host ""
 $gpus = Get-CimInstance Win32_VideoController
 Write-Host "--- Graphics Card(s) ---" -ForegroundColor Magenta
 if ($gpus.Count -eq 0) {
-    Write-Host "No graphics card found." -ForegroundColor Magenta
+    Write-Host "Status: Bad" -ForegroundColor Red
+    Write-Host "No graphics card found." -ForegroundColor Red
 } else {
+    $allGPUsGood = $true
+    foreach ($gpu in $gpus) {
+        if ($gpu.Status -ne "OK") {
+            $allGPUsGood = $false
+            break
+        }
+    }
+    if ($allGPUsGood) {
+        Write-Host "Status: OK" -ForegroundColor Green
+    } else {
+        Write-Host "Status: Bad" -ForegroundColor Red
+    }
     Write-Host "Number of GPUs: $($gpus.Count)" -ForegroundColor Magenta
 }
 foreach ($gpu in $gpus) {
