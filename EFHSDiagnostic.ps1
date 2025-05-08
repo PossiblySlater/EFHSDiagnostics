@@ -1,9 +1,11 @@
 Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "      Version 2.2" -ForegroundColor Yellow
+Write-Host "      Version 2.3" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
+
+$host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
 
 # --- Operating System ---
 $os = Get-CimInstance Win32_OperatingSystem
@@ -11,6 +13,37 @@ Write-Host "=== Operating System ===" -ForegroundColor Green
 Write-Host "OS         : $($os.Caption)" -ForegroundColor Green
 Write-Host "Version    : $($os.Version)" -ForegroundColor Green
 Write-Host ""
+
+# --- Sound Test ---
+$soundDevices = Get-CimInstance Win32_SoundDevice
+Write-Host "=== Sound Card(s) ===" -ForegroundColor Cyan
+if ($soundDevices.Count -eq 0) {
+    Write-Host "Status: " -ForegroundColor Cyan -NoNewline
+    Write-Host "Bad" -ForegroundColor Red
+    Write-Host "No sound devices found." -ForegroundColor Yellow
+} else {
+    Write-Host "Number of Sound Devices: $($soundDevices.Count)" -ForegroundColor Cyan
+    Write-Host "----------------------------------------" -ForegroundColor Cyan
+    foreach ($device in $soundDevices) {
+        Write-Host "Device Name : $($device.Name)" -ForegroundColor Cyan
+        Write-Host "Status      : " -ForegroundColor Cyan -NoNewline
+        if ($device.Status -eq "OK") {
+            Write-Host "OK" -ForegroundColor Green
+        } else {
+            Write-Host "Bad" -ForegroundColor Red
+        }
+        Write-Host "Manufacturer: $($device.Manufacturer)" -ForegroundColor Cyan
+        Write-Host "----------------------------------------" -ForegroundColor Cyan
+    }
+}
+Write-Host ""
+Write-Host "Playing Sound Test" -ForegroundColor Cyan
+[console]::beep(500,1000)
+[console]::beep(1000,1000)
+Write-Host ""
+Write-Host "Sound Test Played" -ForegroundColor Cyan
+Write-Host ""
+
 
 # --- CPU Info ---
 $cpu = Get-CimInstance Win32_Processor
