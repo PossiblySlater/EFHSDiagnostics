@@ -1,4 +1,6 @@
 # Patch Notes
+## 3.2.1/3.2.2
++ Fixed spacing in some areas
 ## 3.2.0
 + Added update scripts
     + EFHSDiagnostics will automatically check for updates and install them
