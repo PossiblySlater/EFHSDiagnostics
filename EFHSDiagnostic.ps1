@@ -1,11 +1,76 @@
 Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "      Version 3.1" -ForegroundColor Yellow
+Write-Host "     Version 3.2.0" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 
 $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
+
+# Function to check for updates
+function Test-ForUpdates {
+    $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
+    $localVersion = "v3.2.0"  # Current version of the script
+
+    Write-Host "Checking for updates..." -ForegroundColor Cyan
+
+    try {
+        # Check internet connectivity
+        Invoke-WebRequest -Uri "https://api.github.com" -Method Head -TimeoutSec 5 | Out-Null
+
+        # Fetch the latest version from GitHub
+        $apiUrl = $repoUrl -replace "https://github.com", "https://api.github.com/repos"
+        $releaseInfo = Invoke-RestMethod -Uri "$apiUrl/releases/latest"
+        $latestVersion = $releaseInfo.tag_name
+
+        if ($latestVersion -ne $localVersion) {
+            Write-Host "A new version ($latestVersion) is available. Current version: $localVersion." -ForegroundColor Yellow
+            $update = Read-Host "Do you want to update? (Yes/No)"
+            if ($update -eq "Yes") {
+                Update-ScriptFiles -RepoUrl $repoUrl
+            } else {
+                Write-Host "Update canceled." -ForegroundColor Cyan
+            }
+        } else {
+            Write-Host "You are already using the latest version ($localVersion)." -ForegroundColor Green
+        }
+    } catch {
+        Write-Host "Unable to check for updates. Please check your internet connection." -ForegroundColor Red
+    }
+}
+
+# Function to download and replace files
+function Update-ScriptFiles {
+    param (
+        [string]$RepoUrl
+    )
+    Write-Host "Downloading and updating files..." -ForegroundColor Cyan
+    $zipUrl = "$RepoUrl/archive/refs/heads/main.zip"
+    $tempZip = "$env:TEMP\EFHSDiagnostics.zip"
+    $localPath = (Get-Location).Path
+
+    try {
+        # Download the repository as a ZIP file
+        Invoke-WebRequest -Uri $zipUrl -OutFile $tempZip
+
+        # Extract the ZIP file and replace the current files
+        Expand-Archive -Path $tempZip -DestinationPath $env:TEMP\EFHSDiagnostics -Force
+        Copy-Item -Path "$env:TEMP\EFHSDiagnostics\EFHSDiagnostics-main\*" -Destination $localPath -Recurse -Force
+
+        # Clean up temporary files
+        Remove-Item $tempZip -Force
+        Remove-Item "$env:TEMP\EFHSDiagnostics" -Recurse -Force
+
+        Write-Host "Update completed successfully! Please restart the script." -ForegroundColor Green
+        Pause
+        Exit
+    } catch {
+        Write-Host "An error occurred during the update process: $_" -ForegroundColor Red
+    }
+}
+
+# Check for updates before running diagnostics
+Test-ForUpdates
 
 # Ask the user for output format
 $outputFormat = Read-Host "Choose output format (Table/List)"
