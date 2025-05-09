@@ -1,7 +1,7 @@
 Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "     Version 3.2.1" -ForegroundColor Yellow
+Write-Host "     Version 3.2.2" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 
@@ -10,10 +10,10 @@ $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
 # Function to check for updates
 function Test-ForUpdates {
     $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
-    $localVersion = "v3.2.1"  # Current version of the script
+    $localVersion = "v3.2.2"  # Current version of the script
 
     Write-Host "Checking for updates..." -ForegroundColor Cyan
-
+    Write-Host ""
     try {
         # Check internet connectivity
         Invoke-WebRequest -Uri "https://api.github.com" -Method Head -TimeoutSec 5 | Out-Null
@@ -25,7 +25,9 @@ function Test-ForUpdates {
 
         if ($latestVersion -ne $localVersion) {
             Write-Host "A new version ($latestVersion) is available. Current version: $localVersion." -ForegroundColor Yellow
+            Write-Host ""
             $update = Read-Host "Do you want to update? (Yes/No)"
+            write-host ""
             if ($update -eq "Yes") {
                 Update-ScriptFiles -RepoUrl $repoUrl
             } else {
@@ -45,6 +47,7 @@ function Update-ScriptFiles {
         [string]$RepoUrl
     )
     Write-Host "Downloading and updating files..." -ForegroundColor Cyan
+    Write-Host ""
     $zipUrl = "$RepoUrl/archive/refs/heads/main.zip"
     $tempZip = "$env:TEMP\EFHSDiagnostics.zip"
     $localPath = (Get-Location).Path
@@ -71,10 +74,10 @@ function Update-ScriptFiles {
 
 # Check for updates before running diagnostics
 Test-ForUpdates
-
+Write-Host ""
 # Ask the user for output format
 $outputFormat = Read-Host "Choose output format (Table/List)"
-
+Write-Host ""
 # Function to draw a table row
 function Write-TableRow {
     param (
