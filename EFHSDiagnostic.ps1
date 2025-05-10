@@ -2,7 +2,7 @@ $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
 # Function to check for updates
 function Test-ForUpdates {
     $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
-    $localVersion = "v3.3.0"  # Current version of the script
+    $localVersion = "v3.3.1"  # Current version of the script
 
     Write-Host "Checking for updates..." -ForegroundColor Cyan
     Write-Host ""
@@ -73,7 +73,7 @@ Start-Sleep -Seconds 2
 Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "     Version 3.3.0" -ForegroundColor Yellow
+Write-Host "     Version 3.3.1" -ForegroundColor Yellow
 Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 Write-Host ""
