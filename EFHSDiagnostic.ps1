@@ -1,16 +1,8 @@
-Clear-Host
-Write-Host "=======================" -ForegroundColor DarkBlue
-Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
-Write-Host "     Version 3.2.2" -ForegroundColor Yellow
-Write-Host "    Slater Feistner" -ForegroundColor Red
-Write-Host "=======================`n" -ForegroundColor DarkBlue
-
 $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
-
 # Function to check for updates
 function Test-ForUpdates {
     $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
-    $localVersion = "v3.2.2"  # Current version of the script
+    $localVersion = "v3.3.0"  # Current version of the script
 
     Write-Host "Checking for updates..." -ForegroundColor Cyan
     Write-Host ""
@@ -75,6 +67,17 @@ function Update-ScriptFiles {
 # Check for updates before running diagnostics
 Test-ForUpdates
 Write-Host ""
+
+Start-Sleep -Seconds 2
+
+Clear-Host
+Write-Host "=======================" -ForegroundColor DarkBlue
+Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
+Write-Host "     Version 3.3.0" -ForegroundColor Yellow
+Write-Host "    Slater Feistner" -ForegroundColor Red
+Write-Host "=======================`n" -ForegroundColor DarkBlue
+Write-Host ""
+
 # Ask the user for output format
 $outputFormat = Read-Host "Choose output format (Table/List)"
 Write-Host ""
@@ -108,6 +111,7 @@ function Write-TableSeparator {
 # Function to display operating system info
 function Get-OSInfo {
     $os = Get-CimInstance Win32_OperatingSystem
+    $uptime = (Get-Date) - $os.LastBootUpTime
     Write-Host "=== Operating System ===" -ForegroundColor Green
     if ($outputFormat -eq "Table") {
         Write-TableSeparator -Widths @(40, 60) -Color Green
@@ -115,10 +119,36 @@ function Get-OSInfo {
         Write-TableSeparator -Widths @(40, 60) -Color Green
         Write-TableRow -Columns @("OS", $os.Caption) -Widths @(40, 60) -Color Green
         Write-TableRow -Columns @("Version", $os.Version) -Widths @(40, 60) -Color Green
+        Write-TableRow -Columns @("Uptime", ("{0} days, {1} hours, {2} minutes" -f $uptime.Days, $uptime.Hours, $uptime.Minutes)) -Widths @(40, 60) -Color Green
         Write-TableSeparator -Widths @(40, 60) -Color Green
     } else {
         Write-Host "OS         : $($os.Caption)" -ForegroundColor Green
         Write-Host "Version    : $($os.Version)" -ForegroundColor Green
+        Write-Host ("Uptime     : {0} days, {1} hours, {2} minutes" -f $uptime.Days, $uptime.Hours, $uptime.Minutes) -ForegroundColor Green
+    }
+    Write-Host ""
+}
+
+# Function to display network info
+function Get-NetworkInfo {
+    $adapters = Get-CimInstance Win32_NetworkAdapterConfiguration | Where-Object { $_.IPEnabled -eq $true }
+    Write-Host "=== Network Information ===" -ForegroundColor DarkCyan
+    if ($adapters.Count -eq 0) {
+        Write-Host "No active network adapters found." -ForegroundColor Red
+    } else {
+        foreach ($adapter in $adapters) {
+            Write-Host "Adapter Name : $($adapter.Description)" -ForegroundColor DarkCyan
+            Write-Host "IP Address   : $($adapter.IPAddress -join ', ')" -ForegroundColor DarkCyan
+            Write-Host "MAC Address  : $($adapter.MACAddress)" -ForegroundColor DarkCyan
+            Write-Host "----------------------------------------" -ForegroundColor DarkCyan
+        }
+    }
+    Write-Host "Testing Internet Connectivity..." -ForegroundColor DarkCyan
+    try {
+        Test-Connection -ComputerName google.com -Count 2 | Out-Null
+        Write-Host "Internet Connection: OK" -ForegroundColor Green
+    } catch {
+        Write-Host "Internet Connection: Failed" -ForegroundColor Red
     }
     Write-Host ""
 }
@@ -322,12 +352,28 @@ function Get-GPUInfo {
     Write-Host ""
 }
 
+# Function to display battery info
+function Get-BatteryInfo {
+    $battery = Get-CimInstance Win32_Battery
+    Write-Host "=== Battery Information ===" -ForegroundColor DarkYellow
+    if ($battery) {
+        Write-Host "Status        : $($battery.BatteryStatus)" -ForegroundColor DarkYellow
+        Write-Host "Charge Level  : $($battery.EstimatedChargeRemaining)%" -ForegroundColor DarkYellow
+        Write-Host "Estimated Time: $($battery.EstimatedRunTime) minutes" -ForegroundColor DarkYellow
+    } else {
+        Write-Host "No battery detected. This device may not have a battery." -ForegroundColor Red
+    }
+    Write-Host ""
+}
+
 # Call all functions
 Get-OSInfo
+Get-NetworkInfo
 Get-SoundInfo
 Get-CPUInfo
 Get-RAMInfo
 Get-StorageInfo
 Get-GPUInfo
+Get-BatteryInfo
 
 Pause

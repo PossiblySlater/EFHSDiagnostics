@@ -1,4 +1,10 @@
 # Patch Notes
+## 3.3.0
++ Added new tests
+    + Network
+    + Battery
+    + Uptime (Under OS test)
++ Fixed formatting issues with intro message
 ## 3.2.1/3.2.2
 + Fixed spacing in some areas
 ## 3.2.0

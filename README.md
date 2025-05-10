@@ -5,10 +5,13 @@ EFHSDiagnostics is a diagnostic tool designed for the EFHS Computer Service Tech
 ## Features
 
 - **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and status.
-- **Operating System Information**: Shows the OS name and version.
+- **Operating System Information**: Shows the OS name, version, and system uptime.
 - **RAM Details**: Lists installed RAM capacity, speed, type, and manufacturer for each module.
 - **Storage Information**: Provides details about internal drives, including size, type, and health status.
 - **GPU Information**: Displays details about installed graphics cards, including VRAM and status.
+- **Network Diagnostics**: Displays active network adapters, IP addresses, MAC addresses, and tests internet connectivity.
+- **Sound Device Information**: Lists installed sound devices, their status, and plays a sound test.
+- **Battery Information**: Displays battery status, charge level, and estimated runtime (if applicable).
 
 ## Prerequisites
 
@@ -30,6 +33,6 @@ To use the EFHS Diagnostics tool, either:
 - **Script Fails to Run**: Ensure the execution policy is set to unrestricted as described in the prerequisites.
 
 ## License
-This project is licensed under the GNU General Public License 3.0. See the ([LICENSE](https://github.com/PossiblySlater/EFHSDiagnostics/blob/main/LICENSE)) file for details.
+This project is licensed under the GNU General Public License 3.0. See the [LICENSE](https://github.com/PossiblySlater/EFHSDiagnostics/blob/main/LICENSE) file for details.
 
 Created by Slater Feistner
