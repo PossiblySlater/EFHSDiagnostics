@@ -1,4 +1,7 @@
 # Patch Notes
+## 3.3.1
++ Fixed Network Test
++ Added welcome message
 ## 3.3.0
 + Added new tests
     + Network
