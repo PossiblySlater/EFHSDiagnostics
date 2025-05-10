@@ -78,6 +78,9 @@ Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 Write-Host ""
 
+$userName = $env:USERNAME
+Write-Host "Welcome to the EFHSDiagnostics tool, $userName!"
+
 # Ask the user for output format
 $outputFormat = Read-Host "Choose output format (Table/List)"
 Write-Host ""
@@ -145,7 +148,7 @@ function Get-NetworkInfo {
     }
     Write-Host "Testing Internet Connectivity..." -ForegroundColor DarkCyan
     try {
-        Test-Connection -ComputerName google.com -Count 2 | Out-Null
+        Resolve-DnsName -Name google.com -ErrorAction Stop | Out-Null
         Write-Host "Internet Connection: OK" -ForegroundColor Green
     } catch {
         Write-Host "Internet Connection: Failed" -ForegroundColor Red
@@ -375,5 +378,4 @@ Get-RAMInfo
 Get-StorageInfo
 Get-GPUInfo
 Get-BatteryInfo
-
 Pause
