@@ -1,4 +1,6 @@
 # Patch Notes
+## 3.3.2
++ Added saving console transcript to text file
 ## 3.3.1
 + Fixed Network Test
 + Added welcome message
