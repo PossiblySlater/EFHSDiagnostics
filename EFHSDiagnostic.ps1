@@ -1,5 +1,12 @@
 $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
 # Function to check for updates
+
+# Begin transcript logger
+$scriptPath = $MyInvocation.MyCommand.Path
+$scriptFolder = Split-Path -Path $scriptPath
+$logPath = Join-Path -Path $scriptFolder -ChildPath "EFHSDiagnostics_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+Start-Transcript -Path $logPath -Force
+
 function Test-ForUpdates {
     $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
     $localVersion = "v3.3.1"  # Current version of the script
@@ -378,4 +385,6 @@ Get-RAMInfo
 Get-StorageInfo
 Get-GPUInfo
 Get-BatteryInfo
+Stop-Transcript
+Write-Host "Log saved to: $logPath" -ForegroundColor Green
 Pause
