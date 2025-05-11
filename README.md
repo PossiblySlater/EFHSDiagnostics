@@ -33,6 +33,9 @@ Version    : 10.0.22621
 Uptime     : 0 days, 13 hours, 2 minutes
    ```
 
+### Text File Output
+EFHSDiagnostics will give you the option to output the transcript of the program as a text file.
+
 ## How to Use
 Depending on your system and permissions, the script may not run without making sure these prerequisites are met:
 
