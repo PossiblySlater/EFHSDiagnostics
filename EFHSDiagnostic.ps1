@@ -1,5 +1,4 @@
 $host.UI.RawUI.WindowTitle = "EFHSDiagnostics"
-# Function to check for updates
 
 # Begin transcript logger
 $scriptPath = $MyInvocation.MyCommand.Path
@@ -7,6 +6,7 @@ $scriptFolder = Split-Path -Path $scriptPath
 $logPath = Join-Path -Path $scriptFolder -ChildPath "EFHSDiagnostics_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
 Start-Transcript -Path $logPath -Force
 
+# Function to check for updates
 function Test-ForUpdates {
     $repoUrl = "https://github.com/PossiblySlater/EFHSDiagnostics"
     $localVersion = "v3.3.2"  # Current version of the script
@@ -81,7 +81,7 @@ Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
 Write-Host "     Version 3.3.2" -ForegroundColor Yellow
-Write-Host "    Slater Feistner" -ForegroundColor Red
+Write-Host " ©2025 Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 Write-Host ""
 
