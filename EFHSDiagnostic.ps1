@@ -81,7 +81,7 @@ Clear-Host
 Write-Host "=======================" -ForegroundColor DarkBlue
 Write-Host "    EFHSDIAGNOSTICS" -ForegroundColor Cyan
 Write-Host "     Version 3.3.2" -ForegroundColor Yellow
-Write-Host " ©2025 Slater Feistner" -ForegroundColor Red
+Write-Host "    Slater Feistner" -ForegroundColor Red
 Write-Host "=======================`n" -ForegroundColor DarkBlue
 Write-Host ""
 
