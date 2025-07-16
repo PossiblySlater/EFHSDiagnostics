@@ -2,6 +2,8 @@
 
 EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
+This tool was made by a student, for students. It is meant to be an easy and accessible program to check the status and details of hardware in a computer. It is for students in computer service technician classes who may want to check a computer's status. 
+
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
 - **Comprehensive Diagnostics**:
@@ -23,7 +25,7 @@ EFHSDiagnostics is a modern desktop application for quickly assessing the health
 3. Double-click to launch—no installation required!
 
 ### Other Platforms
-- Native builds for macOS and Linux are planned. For now, you can run from source with Node.js and Electron (see Contributing).
+- Native builds for macOS and Linux are planned.
 
 ## Usage
 - Launch the app and click **Run Diagnostics**.
