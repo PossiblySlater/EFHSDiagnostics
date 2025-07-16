@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>EFHSDiagnostics</title>
+  <style>
+    body { background: #121212; color: #0088d6; font-family: monospace; padding: 20px; }
+    button {
+      margin: 5px;
+      padding: 10px 18px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #666;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 360px) 360px; /* 4 normal + 1 sound column */
+      grid-auto-rows: 360px;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: start;
+    }
+    .section {
+      background: #222;
+      padding: 8px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      width: 360px;
+      height: 360px;
+      box-sizing: border-box;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+    .section h2 { margin-top: 0; color: #90caf9; font-size: 1em; }
+    .status-ok { color: #81c784; }
+    .status-failed { color: #e57373; }
+    .storage-section {
+      grid-column: 4 / 5;   /* Place in the 4th column */
+      grid-row: 1 / span 2; /* Span 2 rows */
+      height: 360px;
+      min-height: 360px;
+      max-width: 360px;
+    }
+    .network-section {
+      grid-column: 4 / 5;
+      grid-row: 1 / 2;
+      height: 740px;
+      min-height: 360px;
+      max-width: 360px;
+    }
+    .sound-section {
+      grid-column: 5 / 6;   /* Place in the 5th column */
+      grid-row: 1 / span 2; /* Span 2 rows */
+      height: 740px;
+      min-height: 360px;
+      max-width: 360px;
+    }
+  </style>
+</head>
+<body>
+  <h1>EFHSDiagnostics</h1>
+  <button onclick="runDiagnostics()">Run Diagnostics</button>
+
+  <div class="grid-container">
+    <div id="os-section" class="section">
+      <h2>Operating System</h2>
+      <div id="os-info"></div>
+    </div>
+    <div id="cpu-section" class="section">
+      <h2>CPU</h2>
+      <div id="cpu-info"></div>
+    </div>
+    <div id="ram-section" class="section">
+      <h2>RAM</h2>
+      <div id="ram-info"></div>
+    </div>
+    <div id="storage-section" class="section">
+      <h2>Storage</h2>
+      <div id="storage-info"></div>
+    </div>
+    <div id="gpu-section" class="section">
+      <h2>Graphics Cards</h2>
+      <div id="gpu-info"></div>
+    </div>
+    <div id="battery-section" class="section battery-section">
+      <h2>Battery</h2>
+      <div id="battery-info"></div>
+    </div>
+    <div id="net-section" class="section network-section">
+      <h2>Network</h2>
+      <div id="net-info"></div>
+    </div>
+    <div id="sound-section" class="section sound-section">
+      <h2>Sound Cards</h2>
+      <div id="sound-info"></div>
+    </div>
+  </div>
+  <pre id="output" style="display:none;"></pre>
+  <script src="renderer.js"></script>
+
+  <div style="
+    position: fixed;
+    left: 12px;
+    bottom: 8px;
+    color: #fff;
+    font-size: 0.85em;
+    opacity: 0.7;
+    z-index: 100;
+    pointer-events: none;
+  ">
+    v4.0.0<br>
+    <a href="./PATCHNOTES.MD" style="color:#00c3ff;text-decoration:underline;pointer-events:auto;" target="_blank">Patch Notes</a> <br>
+    Made with <span style="color:#00c3ff;">Electron</span>
+  </div>
+  <div style="
+    position: fixed;
+    right: 12px;
+    bottom: 8px;
+    color: #e57373;
+    font-size: 0.85em;
+    opacity: 0.85;
+    z-index: 100;
+    text-align: right;
+    pointer-events: auto;
+  ">
+    ©2025 The EFHSDiagnostics Team<br>
+    Developed by Slater Feistner<br>
+    <a href="./LICENSE" style="color:#e57373;text-decoration:underline;pointer-events:auto;" target="_blank">LICENSE</a>
+  </div>
+</body>
+</html>

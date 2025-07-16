@@ -1,4 +1,8 @@
 # Patch Notes
+## 4.0.0
++ Completely overhauled and redid tool
+    + EFHS Diagnostics now uses Electron and no longer uses PowerShell
+    + There is now a user interface and an overall more user-friendly experience
 ## 3.3.2
 + Added saving console transcript to text file
 ## 3.3.1

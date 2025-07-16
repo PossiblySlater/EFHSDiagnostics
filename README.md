@@ -1,55 +1,49 @@
 # EFHSDiagnostics
 
-EFHSDiagnostics is a diagnostic tool designed for the EFHS Computer Service Technician Class. This script provides a comprehensive overview of the computer's hardware and system status, all in one place. It is a useful utility for quickly assessing the health and performance of a computer.
+EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
 ## Features
-### Diagnostics
-   - **CPU Diagnostics**: Displays CPU name, core count, logical processors, clock speed, and status.
-   - **Operating System Information**: Shows the OS name, version, and system uptime.
-   - **RAM Details**: Lists installed RAM capacity, speed, type, and manufacturer for each module.
-   - **Storage Information**: Provides details about internal drives, including size, type, and health status.
-   - **GPU Information**: Displays details about installed graphics cards, including VRAM and status.
-   - **Network Diagnostics**: Displays active network adapters, IP addresses, MAC addresses, and tests internet connectivity.
-   - **Sound Device Information**: Lists installed sound devices, their status, and plays a sound test.
-   - **Battery Information**: Displays battery status, charge level, and estimated runtime (if applicable).
+- **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
+- **Comprehensive Diagnostics**:
+  - **Operating System**: Name, version, uptime, and hostname
+  - **CPU**: Model, core count, logical processors, and frequency
+  - **RAM**: Total capacity, type, and manufacturer details
+  - **Storage**: Drive list, capacity, and usage
+  - **Graphics Cards**: Model and VRAM
+  - **Network**: Adapter list, IP/MAC addresses, and internet connectivity check
+  - **Sound Devices**: Card list and manufacturer
+  - **Battery**: Charge level and status (if applicable)
+- **One-click Diagnostics**: Instantly gather and display all system info
+- **Export Results**: Save a full diagnostic report to a text file
 
-### Formatted Output
-Choose between a table output:
+## Installation
+### Windows
+1. Go to the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of this repository.
+2. Download the latest `EFHSDiagnostics.exe` file.
+3. Double-click to launch—no installation required!
+
+### Other Platforms
+- Native builds for macOS and Linux are planned. For now, you can run from source with Node.js and Electron (see Contributing).
+
+## Usage
+- Launch the app and click **Run Diagnostics**.
+- View detailed results for each hardware and system category in the main window.
+
+## Contributing
+Contributions are welcome! To run from source:
+1. Clone this repository.
+2. Install dependencies:
+   ```bash
+   npm install
    ```
-   === Operating System ===
-+------------------------------------------+--------------------------------------------------------------+
-| Property                                 | Value                                                        |
-+------------------------------------------+--------------------------------------------------------------+
-| OS                                       | Microsoft Windows 11 Home                                    |
-| Version                                  | 10.0.22621                                                   |
-| Uptime                                   | 0 days, 13 hours, 0 minutes                                  |
-+------------------------------------------+--------------------------------------------------------------+
+3. Start the app:
+   ```bash
+   npm start
    ```
-Or a list output:
-   ```
-=== Operating System ===
-OS         : Microsoft Windows 11 Home
-Version    : 10.0.22621
-Uptime     : 0 days, 13 hours, 2 minutes
-   ```
-
-### Text File Output
-EFHSDiagnostics will give you the option to output the transcript of the program as a text file.
-
-## How to Use
-Depending on your system and permissions, the script may not run without making sure these prerequisites are met:
-
-1. **PowerShell Execution Policy**: If the script fails to run, open a new PowerShell prompt and execute the following command:
-   ```powershell
-   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted -Force
-   ```
-
-To use the EFHS Diagnostics tool, either:
-1. Right click `EFHSDiagnostic.ps1` and click **Run in PowerShell.**
-
-2. Open a new PowerShell window, navigate to the EFHSDiagnostics directory, and run `./EFHSDiagnostic.ps1`.
 
 ## License
-This project is licensed under the GNU General Public License 3.0. See the [LICENSE](https://github.com/PossiblySlater/EFHSDiagnostics/blob/main/LICENSE) file for details.
+EFHSDiagnostics is licensed under the GNU General Public License v3.0. See the [LICENSE](./LICENSE) file for details.
 
-Created by Slater Feistner
+---
+
+**Created by Slater Feistner and the EFHSDiagnostics Team**
