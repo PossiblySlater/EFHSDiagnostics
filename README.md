@@ -2,6 +2,8 @@
 
 EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
+> **Recommended:** For the best experience, run EFHSDiagnostics in a maximized window to ensure all information is clearly visible.
+
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
 - **Comprehensive Diagnostics**:
@@ -18,16 +20,19 @@ EFHSDiagnostics is a modern desktop application for quickly assessing the health
 
 ## Installation
 ### Windows
-1. Go to the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of this repository.
-2. Download the latest `EFHSDiagnostics.exe` file.
-3. Double-click to launch—no installation required!
+1. Go to the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of the repository.
+2. Download the latest `EFHSDiagnostics-win32-x64.zip` file.
+3. Uncompress the .zip file.
+3. Run the `EFHSDiagnostics.exe` file.
 
 ### Other Platforms
 - Native builds for macOS and Linux are planned. For now, you can run from source with Node.js and Electron (see Contributing).
 
 ## Usage
-- Launch the app and click **Run Diagnostics**.
+- Open the .exe and use the tabs to navigate between Diagnostics, Network Tests, and About.
 - View detailed results for each hardware and system category in the main window.
+- Run a network speed test in the Network Tests tab.
+- Read about the app in the About tab.
 
 ## Contributing
 Contributions are welcome! To run from source:

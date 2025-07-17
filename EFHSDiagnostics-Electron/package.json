@@ -10,9 +10,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "adm-zip": "^0.5.16",
     "axios": "^1.10.0",
     "electron": "^37.2.2",
     "node-fetch": "^3.3.2",
     "systeminformation": "^5.27.7"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
   }
 }

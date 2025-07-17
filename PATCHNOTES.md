@@ -1,4 +1,9 @@
 # Patch Notes
+## 4.1.0
++ Added tabbed interface (Diagnostics, Network Tests, About)
++ Embedded Meter.net network speed test in Network Tests tab
++ Added About section with Markdown rendering from ABOUT.md
+
 ## 4.0.0
 + Completely overhauled and redid tool
     + EFHS Diagnostics now uses Electron and no longer uses PowerShell

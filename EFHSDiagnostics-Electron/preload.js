@@ -4,6 +4,10 @@ const { exec } = require('child_process');
 const fetch = require('node-fetch');
 const si = require('systeminformation');
 const dns = require('dns');
+const path = require('path');
+const fs = require('fs');
+const https = require('https');
+const AdmZip = require('adm-zip');
 
 console.log("preload.js loaded");
 
@@ -73,5 +77,5 @@ contextBridge.exposeInMainWorld('diagnosticsAPI', {
   },
   getBattery: async () => {
     return await si.battery();
-  },
+  }
 });

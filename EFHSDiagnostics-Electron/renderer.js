@@ -131,3 +131,42 @@ async function runDiagnostics() {
     document.getElementById('battery-info').textContent = "No battery detected.";
   }
 }
+
+function switchTab(tab) {
+  document.getElementById('tab-diagnostics').classList.remove('active');
+  document.getElementById('tab-network').classList.remove('active');
+  document.getElementById('tab-about').classList.remove('active');
+  document.getElementById('diagnostics-content').style.display = 'none';
+  document.getElementById('network-content').style.display = 'none';
+  document.getElementById('about-content').style.display = 'none';
+
+  if (tab === 'diagnostics') {
+    document.getElementById('tab-diagnostics').classList.add('active');
+    document.getElementById('diagnostics-content').style.display = '';
+    runDiagnostics();
+  } else if (tab === 'network') {
+    document.getElementById('tab-network').classList.add('active');
+    document.getElementById('network-content').style.display = '';
+  } else if (tab === 'about') {
+    document.getElementById('tab-about').classList.add('active');
+    document.getElementById('about-content').style.display = '';
+  }
+}
+
+// Add at the top:
+// const marked = require('marked'); // For Node context, but in browser use CDN or expose via preload if needed
+
+window.addEventListener('DOMContentLoaded', () => {
+  switchTab('diagnostics');
+  // Load ABOUT.md into About tab and render as Markdown
+  fetch('../ABOUT.md')
+    .then(res => res.text())
+    .then(text => {
+      // Use marked to render Markdown to HTML
+      if (window.marked) {
+        document.getElementById('about-readme').innerHTML = window.marked.parse(text);
+      } else {
+        document.getElementById('about-readme').textContent = text + '\n\n[Markdown renderer not loaded]';
+      }
+    });
+});
