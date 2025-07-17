@@ -26,7 +26,7 @@ EFHSDiagnostics is a modern desktop application for quickly assessing the health
 3. Run the `EFHSDiagnostics.exe` file.
 
 ### Other Platforms
-- Native builds for macOS and Linux are planned. For now, you can run from source with Node.js and Electron (see Contributing).
+- Native builds for macOS and Linux are planned.
 
 ## Usage
 - Open the .exe and use the tabs to navigate between Diagnostics, Network Tests, and About.
