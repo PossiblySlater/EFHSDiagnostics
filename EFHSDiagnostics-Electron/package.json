@@ -1,22 +1,43 @@
 {
   "name": "efhsdiagnostics-electron",
-  "version": "1.0.0",
+  "version": "4.1.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A modern desktop diagnostics tool for EFHS, built with Electron.",
   "dependencies": {
     "adm-zip": "^0.5.16",
     "axios": "^1.10.0",
-    "electron": "^37.2.2",
     "node-fetch": "^3.3.2",
     "systeminformation": "^5.27.7"
   },
   "devDependencies": {
+    "electron": "^37.2.2",
+    "electron-builder": "^26.0.12",
     "electron-packager": "^17.1.2"
+  },
+  "build": {
+    "appId": "com.efhsdiagnostics.app",
+    "productName": "EFHSDiagnostics",
+    "files": [
+      "**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }

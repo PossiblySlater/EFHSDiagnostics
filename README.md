@@ -1,8 +1,8 @@
 # EFHSDiagnostics
 
-EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
+EFHSDiagnostics is a desktop application for quickly assessing the health and performance of your computer, made to be easy for students to use. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
-> **Recommended:** For the best experience, run EFHSDiagnostics in a maximized window to ensure all information is clearly visible.
+> **Made by students, for students:** EFHSDiagnostics is designed specifically with middle and high school computer technicians in mind. Our goal is to make it easy for students to see everything about a computer in one place, providing all the essential diagnostics and system information through a simple, unified interface.
 
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
@@ -21,18 +21,20 @@ EFHSDiagnostics is a modern desktop application for quickly assessing the health
 ## Installation
 ### Windows
 1. Go to the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of the repository.
-2. Download the latest `EFHSDiagnostics-win32-x64.zip` file.
-3. Uncompress the .zip file.
-3. Run the `EFHSDiagnostics.exe` file.
+2. Download the latest `EFHSDiagnostics Setup.exe` file.
+3. Run the downloaded `.exe` installer and follow the prompts to install EFHSDiagnostics.
+4. Once installed, launch EFHSDiagnostics from your Start Menu or desktop shortcut.
 
 ### Other Platforms
 - Native builds for macOS and Linux are planned.
 
 ## Usage
-- Open the .exe and use the tabs to navigate between Diagnostics, Network Tests, and About.
+- Open EFHSDiagnostics and use the tabs to navigate between Diagnostics, Network Tests, and About.
 - View detailed results for each hardware and system category in the main window.
 - Run a network speed test in the Network Tests tab.
 - Read about the app in the About tab.
+
+> **Recommended:** For the best experience, run EFHSDiagnostics in a maximized window to ensure all information is clearly visible.
 
 ## Contributing
 Contributions are welcome! To run from source:
