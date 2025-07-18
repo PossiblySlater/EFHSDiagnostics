@@ -127,6 +127,30 @@
       color: #90caf9;
       text-decoration: underline;
     }
+    #patchnotes-md {
+      padding: 16px 20px;
+      margin: 16px 0 0 0;
+      background: #181818;
+      color: #e0e0e0;
+      border-radius: 8px;
+      box-shadow: none;
+      max-width: 100vw;
+      overflow-x: auto;
+      font-size: 1em;
+    }
+    #update-status {
+      font-size: 1.15em;
+      font-weight: 500;
+      margin-bottom: 0.5em;
+    }
+    #update-status a {
+      color: #42aaff;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    #update-status a:hover {
+      color: #90caf9;
+    }
   </style>
 </head>
 <body>
@@ -135,6 +159,7 @@
     <button class="tab active" id="tab-diagnostics" onclick="switchTab('diagnostics')">Diagnostics</button>
     <button class="tab" id="tab-network" onclick="switchTab('network')">Network Tests</button>
     <button class="tab" id="tab-about" onclick="switchTab('about')">About</button>
+    <button class="tab" id="tab-updates" onclick="switchTab('updates')">Updates</button>
   </div>
 
   <div id="diagnostics-content">
@@ -186,6 +211,9 @@
   <div id="about-content" style="display:none;">
     <div id="about-readme" class="about-readme"></div>
   </div>
+  <div id="updates-content" style="display:none;">
+    <div id="update-status"></div>
+  </div>
   <pre id="output" style="display:none;"></pre>
   <script src="renderer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -200,8 +228,7 @@
     z-index: 100;
     pointer-events: none;
   ">
-    v4.1.0<br>
-    <a href="./PATCHNOTES.MD" style="color:#00c3ff;text-decoration:underline;pointer-events:auto;" target="_blank">Patch Notes</a> <br>
+    v4.1.2<br>
     Made with <span style="color:#00c3ff;">Electron</span>
   </div>
   <div style="

@@ -1,4 +1,8 @@
 # Patch Notes
+## 4.1.2
++ Added Updates tab (checks for new versions and displays patch notes from GitHub)
++ Bug fixes and UI improvements
+
 ## 4.1.1
 + Switched to electron-builder
     + EFHSDiagnostics is now installable

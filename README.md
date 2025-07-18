@@ -4,6 +4,10 @@ EFHSDiagnostics is a desktop application for quickly assessing the health and pe
 
 > **Made by students, for students:** EFHSDiagnostics is designed specifically with middle and high school computer technicians in mind. Our goal is to make it easy for students to see everything about a computer in one place, providing all the essential diagnostics and system information through a simple, unified interface.
 
+## What's New in v4.1.2
+- **Updates Tab:** Check for new versions and view the latest patch notes directly from GitHub.
+- **Bug Fixes:** Various UI and logic improvements for a smoother experience.
+
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
 - **Comprehensive Diagnostics**:
@@ -29,10 +33,11 @@ EFHSDiagnostics is a desktop application for quickly assessing the health and pe
 - Native builds for macOS and Linux are planned.
 
 ## Usage
-- Open EFHSDiagnostics and use the tabs to navigate between Diagnostics, Network Tests, and About.
+- Open EFHSDiagnostics and use the tabs to navigate between Diagnostics, Network Tests, About, and Updates.
 - View detailed results for each hardware and system category in the main window.
 - Run a network speed test in the Network Tests tab.
 - Read about the app in the About tab.
+- Check for updates and view patch notes in the Updates tab.
 
 > **Recommended:** For the best experience, run EFHSDiagnostics in a maximized window to ensure all information is clearly visible.
 

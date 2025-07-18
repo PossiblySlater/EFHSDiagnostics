@@ -136,9 +136,11 @@ function switchTab(tab) {
   document.getElementById('tab-diagnostics').classList.remove('active');
   document.getElementById('tab-network').classList.remove('active');
   document.getElementById('tab-about').classList.remove('active');
+  document.getElementById('tab-updates').classList.remove('active');
   document.getElementById('diagnostics-content').style.display = 'none';
   document.getElementById('network-content').style.display = 'none';
   document.getElementById('about-content').style.display = 'none';
+  document.getElementById('updates-content').style.display = 'none';
 
   if (tab === 'diagnostics') {
     document.getElementById('tab-diagnostics').classList.add('active');
@@ -150,6 +152,9 @@ function switchTab(tab) {
   } else if (tab === 'about') {
     document.getElementById('tab-about').classList.add('active');
     document.getElementById('about-content').style.display = '';
+  } else if (tab === 'updates') {
+    document.getElementById('tab-updates').classList.add('active');
+    document.getElementById('updates-content').style.display = '';
   }
 }
 
@@ -159,7 +164,7 @@ function switchTab(tab) {
 window.addEventListener('DOMContentLoaded', () => {
   switchTab('diagnostics');
   // Load ABOUT.md into About tab and render as Markdown
-  fetch('../ABOUT.md')
+  fetch('./ABOUT.md')
     .then(res => res.text())
     .then(text => {
       // Use marked to render Markdown to HTML
@@ -169,4 +174,49 @@ window.addEventListener('DOMContentLoaded', () => {
         document.getElementById('about-readme').textContent = text + '\n\n[Markdown renderer not loaded]';
       }
     });
+  // Check for updates
+  const currentVersion = 'v4.1.2';
+  const statusDiv = document.getElementById('update-status');
+  fetch('https://api.github.com/repos/PossiblySlater/EFHSDiagnostics/releases/latest')
+    .then(res => res.json())
+    .then(release => {
+      const latestVersion = release.tag_name || '';
+      if (compareVersions(currentVersion, latestVersion) > 0) {
+        statusDiv.textContent = `You are running a development version (${currentVersion}).`;
+        document.getElementById('patchnotes-md')?.remove();
+      } else if (compareVersions(latestVersion, currentVersion) > 0) {
+        statusDiv.innerHTML = `An update is available: <b>${latestVersion}</b>.<br><a href=\"https://github.com/PossiblySlater/EFHSDiagnostics\" target=\"_blank\">Go to GitHub Releases</a>`;
+        // Fetch and render PATCHNOTES.md from GitHub repo
+        fetch('https://raw.githubusercontent.com/PossiblySlater/EFHSDiagnostics/main/PATCHNOTES.md')
+          .then(res => res.text())
+          .then(md => {
+            let patchDiv = document.getElementById('patchnotes-md');
+            if (!patchDiv) {
+              patchDiv = document.createElement('div');
+              patchDiv.id = 'patchnotes-md';
+              patchDiv.className = 'about-readme';
+              statusDiv.insertAdjacentElement('afterend', patchDiv);
+            }
+            patchDiv.innerHTML = window.marked ? window.marked.parse(md) : md;
+          });
+      } else {
+        statusDiv.textContent = `You are running the latest version (${currentVersion}).`;
+        document.getElementById('patchnotes-md')?.remove();
+      }
+    })
+    .catch(() => {
+      statusDiv.textContent = 'Unable to check for updates.';
+    });
 });
+
+// Simple version comparison: returns 1 if v1>v2, -1 if v1<v2, 0 if equal
+function compareVersions(v1, v2) {
+  const a = v1.replace(/^v/, '').split('.').map(Number);
+  const b = v2.replace(/^v/, '').split('.').map(Number);
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    const n1 = a[i] || 0, n2 = b[i] || 0;
+    if (n1 > n2) return 1;
+    if (n1 < n2) return -1;
+  }
+  return 0;
+}

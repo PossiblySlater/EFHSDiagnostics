@@ -4,10 +4,9 @@
 
 EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
-## What's New in v4.1.0
-- **Tabbed Interface:** Easily switch between Diagnostics, Network Tests, and About tabs.
-- **Network Speed Test:** Run a speed test directly in the Network Tests tab (powered by Meter.net).
-- **About Section:** View this About page rendered as Markdown in the app.
+## What's New in v4.1.2
+- **Updates Tab:** Check for new versions and view the latest patch notes directly from GitHub.
+- **Bug Fixes:** Various UI and logic improvements for a smoother experience.
 
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
@@ -25,10 +24,11 @@ EFHSDiagnostics is a modern desktop application for quickly assessing the health
 
 ## Usage
 - Open the .exe.
-- Use the tabs to navigate between Diagnostics, Network Tests, and About.
+- Use the tabs to navigate between Diagnostics, Network Tests, About, and Updates.
 - View detailed results for each hardware and system category in the main window.
 - Run a network speed test in the Network Tests tab.
 - Read about the app in the About tab.
+- Check for updates and view patch notes in the Updates tab.
 
 ## Contributing
 Contributions are welcome! To run from source:
@@ -47,4 +47,4 @@ EFHSDiagnostics is licensed under the GNU General Public License v3.0. See the [
 
 ---
 
-**Created by Slater Feistner and the EFHSDiagnostics Team**
+**Created by Slater Feistner and the EFHSDiagnostics Team** 
