@@ -2,13 +2,15 @@
   "name": "efhsdiagnostics-electron",
   "version": "4.1.2",
   "main": "main.js",
+  "homepage": "https://github.com/PossiblySlater/EFHSDiagnostics",
+  "author": "Slater Feistner <56547@buhsd.org>",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "dist:linux": "electron-builder --linux"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0-or-later",
   "description": "A modern desktop diagnostics tool for EFHS, built with Electron.",
   "dependencies": {
     "adm-zip": "^0.5.16",
@@ -37,7 +39,11 @@
       "target": "dmg"
     },
     "linux": {
-      "target": "AppImage"
+      "target": "deb",
+      "category": "Utility",
+      "maintainer": "Slater Feistner <56547@buhsd.org>",
+      "synopsis": "A modern desktop diagnostics tool, built with Electron.",
+      "description": "A modern desktop diagnostics tool, built with Electron."
     }
   }
 }
