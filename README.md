@@ -2,7 +2,7 @@
 
 EFHSDiagnostics is a desktop application for quickly assessing the health and performance of your computer, made to be easy for students to use. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
-> **Made by students, for students:** EFHSDiagnostics is designed specifically with middle and high school computer technicians in mind. Our goal is to make it easy for students to see everything about a computer in one place, providing all the essential diagnostics and system information through a simple, unified interface.
+**Made by students, for students:** EFHSDiagnostics is designed specifically with middle and high school computer technicians in mind. Our goal is to make it easy for students to see everything about a computer in one place, providing all the essential diagnostics and system information through a simple, unified interface.
 
 ## What's New in v4.1.2
 - **Updates Tab:** Check for new versions and view the latest patch notes directly from GitHub.
@@ -24,13 +24,23 @@ EFHSDiagnostics is a desktop application for quickly assessing the health and pe
 
 ## Installation
 ### Windows
-1. Go to the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of the repository.
-2. Download the latest `EFHSDiagnostics Setup.exe` file.
-3. Run the downloaded `.exe` installer and follow the prompts to install EFHSDiagnostics.
-4. Once installed, launch EFHSDiagnostics from your Start Menu or desktop shortcut.
+1. Download the latest `.exe` package from the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section of the repository.
+2. Run the installer and follow the prompts to install EFHSDiagnostics.
+3. Once installed, launch EFHSDiagnostics from your Start Menu.
 
-### Other Platforms
-- Native builds for macOS and Linux are planned.
+### Linux
+> **Warning:** The prepackaged Linux .deb file has **not** been tested in a native Linux environment. It has only been tested in a WSL Ubuntu environment in Windows. Use at your own risk.
+1. Download the latest `.deb` package from the [Releases](https://github.com/PossiblySlater/EFHSDiagnostics/releases) section.
+2. Open a terminal and navigate to the folder where you downloaded the file.
+3. Install the package using:
+   ```bash
+   sudo dpkg -i EFHSDiagnostics.Setup.*.*.*.deb
+   ```
+4. If you encounter missing dependencies, run:
+   ```bash
+   sudo apt-get install -f
+   ```
+5. Launch EFHSDiagnostics from your applications menu or by running `efhsdiagnostics-electron` in the terminal.
 
 ## Usage
 - Open EFHSDiagnostics and use the tabs to navigate between Diagnostics, Network Tests, About, and Updates.
