@@ -4,9 +4,9 @@ EFHSDiagnostics is a desktop application for quickly assessing the health and pe
 
 **Made by students, for students:** EFHSDiagnostics is designed specifically with middle and high school computer technicians in mind. Our goal is to make it easy for students to see everything about a computer in one place, providing all the essential diagnostics and system information through a simple, unified interface.
 
-## What's New in v4.1.2
-- **Updates Tab:** Check for new versions and view the latest patch notes directly from GitHub.
-- **Bug Fixes:** Various UI and logic improvements for a smoother experience.
+## What's New in v4.1.3
+- **Dark/Light Theme Toggle:** Switch between themes with a bouncy animated button in the top-right corner.
+- **Theme Persistence:** Your theme preference is automatically saved and restored.
 
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe and Linux .deb prebuilt; other platforms coming soon)

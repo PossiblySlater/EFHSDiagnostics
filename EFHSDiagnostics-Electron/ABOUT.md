@@ -4,9 +4,9 @@
 
 EFHSDiagnostics is a modern desktop application for quickly assessing the health and performance of your computer. Built with Electron, it provides a fast, user-friendly graphical interface to view detailed hardware and system diagnostics—all in one place.
 
-## What's New in v4.1.2
-- **Updates Tab:** Check for new versions and view the latest patch notes directly from GitHub.
-- **Bug Fixes:** Various UI and logic improvements for a smoother experience.
+## What's New in v4.1.3
+- **Dark/Light Theme Toggle:** Switch between themes with a bouncy animated button in the top-right corner.
+- **Theme Persistence:** Your theme preference is automatically saved and restored.
 
 ## Features
 - **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)

@@ -1,4 +1,8 @@
 # Patch Notes
+## 4.1.3
++ Added dark/light theme toggle with bouncy animation
++ Theme preference is automatically saved and restored
+
 ## 4.1.2
 + Added Updates tab (checks for new versions and displays patch notes from GitHub)
 + Bug fixes and UI improvements

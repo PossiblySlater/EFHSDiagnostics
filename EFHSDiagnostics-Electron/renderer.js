@@ -161,13 +161,42 @@ function switchTab(tab) {
 // Add at the top:
 // const marked = require('marked'); // For Node context, but in browser use CDN or expose via preload if needed
 
+// Theme toggle functionality
+function toggleTheme() {
+  const body = document.body;
+  const themeToggle = document.getElementById('theme-toggle');
+  const currentTheme = body.getAttribute('data-theme');
+  
+  // Add bounce animation
+  themeToggle.classList.add('bounce');
+  setTimeout(() => themeToggle.classList.remove('bounce'), 600);
+  
+  if (currentTheme === 'light') {
+    body.removeAttribute('data-theme');
+    themeToggle.textContent = '🌙';
+    localStorage.setItem('theme', 'dark');
+  } else {
+    body.setAttribute('data-theme', 'light');
+    themeToggle.textContent = '☀️';
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Load saved theme preference
 window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  if (savedTheme === 'light') {
+    document.body.setAttribute('data-theme', 'light');
+    themeToggle.textContent = '☀️';
+  }
+  
   switchTab('diagnostics');
   // Load ABOUT.md into About tab and render as Markdown
   fetch('./ABOUT.md')
     .then(res => res.text())
     .then(text => {
-      // Use marked to render Markdown to HTML
       if (window.marked) {
         document.getElementById('about-readme').innerHTML = window.marked.parse(text);
       } else {
@@ -175,7 +204,7 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   // Check for updates
-  const currentVersion = 'v4.1.2';
+  const currentVersion = 'v4.1.3';
   const statusDiv = document.getElementById('update-status');
   fetch('https://api.github.com/repos/PossiblySlater/EFHSDiagnostics/releases/latest')
     .then(res => res.json())
@@ -220,3 +249,31 @@ function compareVersions(v1, v2) {
   }
   return 0;
 }
+
+// Konami code easter egg
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+function checkKonamiCode(key) {
+  konamiCode.push(key);
+  if (konamiCode.length > konamiSequence.length) {
+    konamiCode.shift();
+  }
+  
+  if (konamiCode.length === konamiSequence.length) {
+    const isKonami = konamiCode.every((k, i) => k === konamiSequence[i]);
+    if (isKonami) {
+      // Activate rainbow mode!
+      document.body.classList.add('rainbow-mode');
+      setTimeout(() => {
+        document.body.classList.remove('rainbow-mode');
+      }, 10000); // 10 seconds
+      konamiCode = []; // Reset
+    }
+  }
+}
+
+// Listen for keydown events
+document.addEventListener('keydown', (e) => {
+  checkKonamiCode(e.code);
+});
