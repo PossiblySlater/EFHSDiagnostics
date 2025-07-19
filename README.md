@@ -9,7 +9,7 @@ EFHSDiagnostics is a desktop application for quickly assessing the health and pe
 - **Bug Fixes:** Various UI and logic improvements for a smoother experience.
 
 ## Features
-- **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe prebuilt; other platforms coming soon)
+- **Cross-platform GUI**: Sleek, easy-to-use interface (Windows .exe and Linux .deb prebuilt; other platforms coming soon)
 - **Comprehensive Diagnostics**:
   - **Operating System**: Name, version, uptime, and hostname
   - **CPU**: Model, core count, logical processors, and frequency
